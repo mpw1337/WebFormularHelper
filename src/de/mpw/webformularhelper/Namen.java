@@ -26,9 +26,9 @@ class Namen {
     }
 
     public Namen() {
-        Scanner scannerFrauen = null;
-        Scanner scannerMaenner = null;
-        Scanner scannerNachnamen = null;
+        Scanner scannerFrauen;
+        Scanner scannerMaenner;
+        Scanner scannerNachnamen;
 
         scannerFrauen = new Scanner((getClass().getResourceAsStream("frauen.txt")));
         scannerMaenner = new Scanner(getClass().getResourceAsStream("maenner.txt"));

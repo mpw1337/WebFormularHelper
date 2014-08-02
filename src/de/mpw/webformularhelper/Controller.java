@@ -119,7 +119,7 @@ public class Controller {
         genderM.setChecked(true);
 
         HTMLInputElement mobileNr = (HTMLInputElement) document.getElementById("mobile");
-        mobileNr.setValue("16041584225");
+        mobileNr.setValue("");
         showData();
     }
 
