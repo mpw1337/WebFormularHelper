@@ -75,4 +75,8 @@ class Namen {
     public int getMonth() {
         return random.nextInt(11);
     }
+
+    public String getPlz() {
+        return "10117";
+    }
 }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.WebView?>
+<?import java.lang.String?>
 <SplitPane dividerPositions="0.2875" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
            minHeight="600.0" minWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="de.mpw.webformularhelper.Controller">
@@ -48,28 +50,54 @@
                         </Button>
                     </children>
                 </GridPane>
-                <Button fx:id="btEintragen" disable="true" maxHeight="1.7976931348623157E308"
-                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eintragenYahoo"
-                        prefHeight="25.0" prefWidth="133.0" text="Eintragen Yahoo">
-                    <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                    </VBox.margin>
-                </Button>
-                <Button fx:id="btEintragenSnelNL" disable="true" layoutX="15.0" layoutY="200.0"
-                        maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
-                        onAction="#eintragenSnelNL" prefHeight="25.0" prefWidth="133.0" text="Eintragen SnelNL"/>
+                <ChoiceBox fx:id="cbHost" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                           prefWidth="150.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="hotmail.de"/>
+                            <String fx:value="yahoo.de"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
                 <Button fx:id="btLoad" alignment="CENTER" disable="true" maxHeight="1.7976931348623157E308"
                         maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
                         mnemonicParsing="false" onAction="#loadYahoo" text="Load Yahoo" textAlignment="CENTER">
                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="btEintragen" disable="true" maxHeight="1.7976931348623157E308"
+                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eintragenYahoo"
+                        prefHeight="25.0" prefWidth="133.0" text="Eintragen Yahoo">
+                    <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="btLoadLive" disable="true" maxHeight="1.7976931348623157E308"
+                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadLive" text="Load Live">
+                    <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="btEintragenLive" disable="true" maxHeight="1.7976931348623157E308"
+                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eintragenLive"
+                        text="Eintragen Live">
+                    <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                     </VBox.margin>
                 </Button>
                 <Button fx:id="btLoad1" alignment="CENTER" disable="true" layoutX="15.0" layoutY="165.0"
                         maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
                         onAction="#loadSnelNL" text="Load SnelNL" textAlignment="CENTER">
                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="btEintragenSnelNL" disable="true" layoutX="15.0" layoutY="200.0"
+                        maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onAction="#eintragenSnelNL" prefHeight="25.0" prefWidth="133.0" text="Eintragen SnelNL">
+                    <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                     </VBox.margin>
                 </Button>
                 <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Progress"

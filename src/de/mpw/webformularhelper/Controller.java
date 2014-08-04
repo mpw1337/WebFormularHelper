@@ -4,10 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.w3c.dom.Document;
@@ -21,6 +18,9 @@ public class Controller {
     public Button btLoad1;
     public ProgressBar pbWeb;
     public TextArea taInformation;
+    public Button btLoadLive;
+    public Button btEintragenLive;
+    public ChoiceBox cbHost;
     private WebEngine webEngine;
     public WebView WvMain;
     public Button btLoad;
@@ -50,6 +50,7 @@ public class Controller {
                 if (newState == Worker.State.SUCCEEDED) {
                     btEintragen.setDisable(true);
                     btEintragenSnelNL.setDisable(true);
+                    btEintragenLive.setDisable(true);
                     System.out.println("Auf der Seite " + webEngine.getLocation());
                     if (webEngine.getLocation().contains("eu.edit.yahoo.com/registration?.pd=&intl=de")) {
                         btEintragen.setDisable(false);
@@ -57,15 +58,23 @@ public class Controller {
                     if (webEngine.getLocation().contains("www.snelnl.com/cart/checkout?coupon=free")) {
                         btEintragenSnelNL.setDisable(false);
                     }
+                    if (webEngine.getLocation().contains("https://signup.live.com/signup.aspx")) {
+                        btEintragenLive.setDisable(false);
+                    }
                 }
             }
         });
         btLoad.setDisable(false);
         btLoad1.setDisable(false);
+        btLoadLive.setDisable(false);
     }
 
     public void loadYahoo(ActionEvent actionEvent) {
         webEngine.load("https://eu.edit.yahoo.com/registration?.pd=&intl=de");
+    }
+
+    public void loadLive(ActionEvent event) {
+        webEngine.load("https://signup.live.com/signup.aspx?lic=1&mkt=DE-DE");
     }
 
     public void loadSnelNL(ActionEvent event) {
@@ -119,20 +128,67 @@ public class Controller {
         genderM.setChecked(true);
 
         HTMLInputElement mobileNr = (HTMLInputElement) document.getElementById("mobile");
-        mobileNr.setValue("");
-        showData();
+        mobileNr.setValue("16041584227");
+        showData("yahoo.de");
     }
 
-    private void showData() {
+    public void eintragenLive(ActionEvent event) {
+        Namen n = new Namen();
         Document document = WvMain.getEngine().getDocument();
-        String telNr = ((HTMLInputElement) document.getElementById("mobile")).getValue();
-        String information = tfEmail.getText() + "@yahoo.de	" + tfPasswort.getText() + "    -	-	" + telNr;
+        Element firstName = document.getElementById("iFirstName");
+        firstName.setAttribute("value", tfVorname.getText());
+        Element lastName = document.getElementById("iLastName");
+        lastName.setAttribute("value", tfNachname.getText());
+        Element email = document.getElementById("imembernamelive");
+        email.setAttribute("value", tfEmail.getText());
+        Element passwort1 = document.getElementById("iPwd");
+        Element passwort2 = document.getElementById("iRetypePwd");
+        passwort1.setAttribute("value", tfPasswort.getText());
+        passwort2.setAttribute("value", tfPasswort.getText());
+        passwort2.setAttribute("type", "");
+
+        Element plz = document.getElementById("iZipCode");
+        plz.setAttribute("value", "10117");
+        System.out.println(plz.getAttribute("value"));
+        Element day = document.getElementById("iBirthDay");
+        HTMLSelectElement selectDay = (HTMLSelectElement) day;
+        int iday = n.getDay();
+        int imonth = n.getMonth();
+        int iyear = n.getYear();
+        System.out.println("Tag" + iday + " Monat" + imonth + " Jahr" + iyear);
+        selectDay.setSelectedIndex(iday);
+        selectDay.setAttribute("value", String.valueOf(iday));
+        System.out.println(selectDay.getOptions().toString());
+
+        Element month = document.getElementById("iBirthMonth");
+        HTMLSelectElement selectMonth = (HTMLSelectElement) month;
+        selectMonth.setSelectedIndex(imonth);
+        selectMonth.setValue(String.valueOf(imonth));
+        selectMonth.setAttribute("value", String.valueOf(imonth));
+
+        Element year = document.getElementById("iBirthYear");
+        HTMLSelectElement selectYear = (HTMLSelectElement) year;
+        selectYear.setSelectedIndex(iyear);
+        selectYear.setValue(String.valueOf(iyear));
+
+        showData("outlook.de");
+    }
+
+    private void showData(String mailsuffix) {
+        Document document = WvMain.getEngine().getDocument();
+        HTMLInputElement inputtelnr = (HTMLInputElement) document.getElementById("mobile");
+        String telNr = "";
+        if (inputtelnr != null) {
+            telNr = inputtelnr.getValue();
+        }
+        String information = tfEmail.getText() + "@" + mailsuffix + "	" + tfPasswort.getText() + "    -	-	" + telNr;
         taInformation.setText(information);
     }
 
     public void eintragenSnelNL(ActionEvent event) {
         Document document = WvMain.getEngine().getDocument();
-        String email = tfEmail.getText() + "@yahoo.de";
+        String host = cbHost.getValue().toString();
+        String email = tfEmail.getText() + "@" + host;
         Element emailprimary = document.getElementById("edit-panes-customer-primary-email");
         emailprimary.setAttribute("value", email);
         Element emailsecondary = document.getElementById("edit-panes-customer-primary-email-confirm");
