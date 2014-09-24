@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.WebView?>
-<?import java.lang.String?>
+<?import java.lang.*?>
 <SplitPane dividerPositions="0.2875" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
            minHeight="600.0" minWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="de.mpw.webformularhelper.Controller">
@@ -54,8 +54,11 @@
                            prefWidth="150.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="hotmail.de"/>
+                            <String fx:value="outlook.de"/>
+                            <String fx:value="outlook.com"/>
+                            <String fx:value="hotmail.com"/>
                             <String fx:value="yahoo.de"/>
+                            <String fx:value="yahoo.com"/>
                         </FXCollections>
                     </items>
                 </ChoiceBox>
