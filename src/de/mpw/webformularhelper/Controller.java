@@ -58,7 +58,7 @@ public class Controller {
                     if (webEngine.getLocation().contains("www.snelnl.com/cart/checkout?coupon=free")) {
                         btEintragenSnelNL.setDisable(false);
                     }
-                    if (webEngine.getLocation().contains("https://signup.live.com/signup.aspx")) {
+                    if (webEngine.getLocation().contains("https://signup.live.com/signup")) {
                         btEintragenLive.setDisable(false);
                     }
                 }
@@ -135,22 +135,20 @@ public class Controller {
     public void eintragenLive(ActionEvent event) {
         Namen n = new Namen();
         Document document = WvMain.getEngine().getDocument();
-        Element firstName = document.getElementById("iFirstName");
+        Element firstName = document.getElementById(FormLive.FIRSTNAME);
         firstName.setAttribute("value", tfVorname.getText());
-        Element lastName = document.getElementById("iLastName");
+        HTMLInputElement inputFirstName = (HTMLInputElement) firstName;
+        inputFirstName.setValue(tfVorname.getText());
+        Element lastName = document.getElementById(FormLive.LASTNAME);
         lastName.setAttribute("value", tfNachname.getText());
-        Element email = document.getElementById("imembernamelive");
-        email.setAttribute("value", tfEmail.getText());
-        Element passwort1 = document.getElementById("iPwd");
-        Element passwort2 = document.getElementById("iRetypePwd");
+        Element email = document.getElementById(FormLive.EMAIL);
+        email.setAttribute("value", tfEmail.getText() +);
+        Element passwort1 = document.getElementById(FormLive.Password1);
+        Element passwort2 = document.getElementById(FormLive.Password2);
         passwort1.setAttribute("value", tfPasswort.getText());
         passwort2.setAttribute("value", tfPasswort.getText());
         passwort2.setAttribute("type", "");
-
-        Element plz = document.getElementById("iZipCode");
-        plz.setAttribute("value", "10117");
-        System.out.println(plz.getAttribute("value"));
-        Element day = document.getElementById("iBirthDay");
+        Element day = document.getElementById(FormLive.BirthDay);
         HTMLSelectElement selectDay = (HTMLSelectElement) day;
         int iday = n.getDay();
         int imonth = n.getMonth();
@@ -160,16 +158,21 @@ public class Controller {
         selectDay.setAttribute("value", String.valueOf(iday));
         System.out.println(selectDay.getOptions().toString());
 
-        Element month = document.getElementById("iBirthMonth");
+        Element month = document.getElementById(FormLive.BirthMonth);
         HTMLSelectElement selectMonth = (HTMLSelectElement) month;
         selectMonth.setSelectedIndex(imonth);
         selectMonth.setValue(String.valueOf(imonth));
         selectMonth.setAttribute("value", String.valueOf(imonth));
 
-        Element year = document.getElementById("iBirthYear");
+        Element year = document.getElementById(FormLive.BirthYear);
         HTMLSelectElement selectYear = (HTMLSelectElement) year;
         selectYear.setSelectedIndex(iyear);
         selectYear.setValue(String.valueOf(iyear));
+
+        Element gender = document.getElementById(FormLive.Gender);
+        HTMLSelectElement selectGender = (HTMLSelectElement) gender;
+        selectGender.setSelectedIndex(1);
+        selectGender.setValue("m");
 
         showData("outlook.de");
     }
