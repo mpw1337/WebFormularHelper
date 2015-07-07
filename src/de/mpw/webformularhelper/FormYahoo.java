@@ -17,6 +17,7 @@ public class FormYahoo extends FormBlueprint {
     public String BirthMonth = "month";
     public String BirthYear = "year";
     public String Gender = "Gender";
+    public String Mobile = "mobile";
 
     public FormYahoo(Document d, Namen n) {
         super(d, n);
@@ -76,5 +77,10 @@ public class FormYahoo extends FormBlueprint {
     @Override
     public String getGender() {
         return Gender;
+    }
+
+    @Override
+    public String getMobile() {
+        return Mobile;
     }
 }
