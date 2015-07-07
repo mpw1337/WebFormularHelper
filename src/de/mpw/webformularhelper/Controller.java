@@ -10,7 +10,6 @@ import javafx.scene.web.WebView;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.html.HTMLInputElement;
-import org.w3c.dom.html.HTMLSelectElement;
 
 public class Controller {
     public Button btStart;
@@ -91,57 +90,28 @@ public class Controller {
 
     public void eintragenYahoo(ActionEvent event) {
         Namen n = new Namen();
+
         Document document = WvMain.getEngine().getDocument();
-        Element firstName = document.getElementById("first-name");
-        firstName.setAttribute("value", tfVorname.getText());
-        Element lastName = document.getElementById("last-name");
-        lastName.setAttribute("value", tfNachname.getText());
-        Element email = document.getElementById("user-name");
-        email.setAttribute("value", tfEmail.getText());
-        Element passwort1 = document.getElementById("password");
-        Element passwort2 = document.getElementById("confirm-password");
-        passwort1.setAttribute("value", tfPasswort.getText());
-        passwort2.setAttribute("value", tfPasswort.getText());
-        passwort2.setAttribute("type", "");
-        Element day = document.getElementById("day");
-        HTMLSelectElement selectDay = (HTMLSelectElement) day;
-        int iday = n.getDay();
-        int imonth = n.getMonth();
-        int iyear = n.getYear();
-        System.out.println("Tag" + iday + " Monat" + imonth + " Jahr" + iyear);
-        selectDay.setSelectedIndex(iday);
-        selectDay.setAttribute("value", String.valueOf(iday));
-        System.out.println(selectDay.getOptions().toString());
-
-        Element month = document.getElementById("month");
-        HTMLSelectElement selectMonth = (HTMLSelectElement) month;
-        selectMonth.setSelectedIndex(imonth);
-        selectMonth.setValue(String.valueOf(imonth));
-        selectMonth.setAttribute("value", String.valueOf(imonth));
-
-        Element year = document.getElementById("year");
-        HTMLSelectElement selectYear = (HTMLSelectElement) year;
-        selectYear.setSelectedIndex(iyear);
-        selectYear.setValue(String.valueOf(iyear));
-
-        HTMLInputElement genderM = (HTMLInputElement) document.getElementById("male");
-        genderM.setChecked(true);
-
-        HTMLInputElement mobileNr = (HTMLInputElement) document.getElementById("mobile");
-        mobileNr.setValue("16041584227");
+        FormYahoo form = new FormYahoo(document, n);
+        form.firstName(tfVorname.getText());
+        form.lastName(tfNachname.getText());
+        form.email(tfEmail.getText());
+        form.passwort(tfPasswort.getText());
+        form.birthday();
+        form.gender();
         showData("yahoo.de");
     }
 
     public void eintragenLive(ActionEvent event) {
         Namen n = new Namen();
         Document document = WvMain.getEngine().getDocument();
-        FormLive fl = new FormLive(document, n);
-        fl.firstName(tfVorname.getText());
-        fl.lastName(tfNachname.getText());
-        fl.email(tfEmail.getText());
-        fl.passwort(tfPasswort.getText());
-        fl.birthday();
-        fl.gender();
+        FormLive form = new FormLive(document, n);
+        form.firstName(tfVorname.getText());
+        form.lastName(tfNachname.getText());
+        form.email(tfEmail.getText());
+        form.passwort(tfPasswort.getText());
+        form.birthday();
+        form.gender();
         showData("outlook.de");
     }
 
