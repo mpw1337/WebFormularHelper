@@ -132,52 +132,16 @@ public class Controller {
         showData("yahoo.de");
     }
 
-    private void firstName(FormBlueprint fb, Document d) {
-        Element firstName = d.getElementById(fb.FIRSTNAME);
-        firstName.setAttribute("value", tfVorname.getText());
-        HTMLInputElement inputFirstName = (HTMLInputElement) firstName;
-        inputFirstName.setValue(tfVorname.getText());
-    }
     public void eintragenLive(ActionEvent event) {
         Namen n = new Namen();
         Document document = WvMain.getEngine().getDocument();
-        FormLive fl = new FormLive();
-        firstName(fl, document);
-        Element lastName = document.getElementById(FormLive.LASTNAME);
-        lastName.setAttribute("value", tfNachname.getText());
-        Element email = document.getElementById(FormLive.EMAIL);
-        email.setAttribute("value", tfEmail.getText());
-        Element passwort1 = document.getElementById(FormLive.Password1);
-        Element passwort2 = document.getElementById(FormLive.Password2);
-        passwort1.setAttribute("value", tfPasswort.getText());
-        passwort2.setAttribute("value", tfPasswort.getText());
-        passwort2.setAttribute("type", "");
-        Element day = document.getElementById(FormLive.BirthDay);
-        HTMLSelectElement selectDay = (HTMLSelectElement) day;
-        int iday = n.getDay();
-        int imonth = n.getMonth();
-        int iyear = n.getYear();
-        System.out.println("Tag" + iday + " Monat" + imonth + " Jahr" + iyear);
-        selectDay.setSelectedIndex(iday);
-        selectDay.setAttribute("value", String.valueOf(iday));
-        System.out.println(selectDay.getOptions().toString());
-
-        Element month = document.getElementById(FormLive.BirthMonth);
-        HTMLSelectElement selectMonth = (HTMLSelectElement) month;
-        selectMonth.setSelectedIndex(imonth);
-        selectMonth.setValue(String.valueOf(imonth));
-        selectMonth.setAttribute("value", String.valueOf(imonth));
-
-        Element year = document.getElementById(FormLive.BirthYear);
-        HTMLSelectElement selectYear = (HTMLSelectElement) year;
-        selectYear.setSelectedIndex(iyear);
-        selectYear.setValue(String.valueOf(iyear));
-
-        Element gender = document.getElementById(FormLive.Gender);
-        HTMLSelectElement selectGender = (HTMLSelectElement) gender;
-        selectGender.setSelectedIndex(1);
-        selectGender.setValue("m");
-
+        FormLive fl = new FormLive(document, n);
+        fl.firstName(tfVorname.getText());
+        fl.lastName(tfNachname.getText());
+        fl.email(tfEmail.getText());
+        fl.passwort(tfPasswort.getText());
+        fl.birthday();
+        fl.gender();
         showData("outlook.de");
     }
 

@@ -1,5 +1,7 @@
 package de.mpw.webformularhelper;
 
+import org.w3c.dom.Document;
+
 /**
  * Created by Markus on 11.04.2015.
  */
@@ -14,4 +16,8 @@ public final class FormLive extends FormBlueprint {
     public static final String BirthMonth = "BirthMonth";
     public static final String BirthYear = "BirthYear";
     public static final String Gender = "Gender";
+
+    public FormLive(Document document, Namen n) {
+        super(document);
+    }
 }
