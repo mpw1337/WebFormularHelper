@@ -141,10 +141,8 @@ public class Controller {
     public void eintragenLive(ActionEvent event) {
         Namen n = new Namen();
         Document document = WvMain.getEngine().getDocument();
-        Element firstName = document.getElementById(FormLive.FIRSTNAME);
-        firstName.setAttribute("value", tfVorname.getText());
-        HTMLInputElement inputFirstName = (HTMLInputElement) firstName;
-        inputFirstName.setValue(tfVorname.getText());
+        FormLive fl = new FormLive();
+        firstName(fl, document);
         Element lastName = document.getElementById(FormLive.LASTNAME);
         lastName.setAttribute("value", tfNachname.getText());
         Element email = document.getElementById(FormLive.EMAIL);
