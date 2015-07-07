@@ -13,18 +13,6 @@ class Namen {
     private final ArrayList<String> nachnamen;
     private final Random random;
 
-    public static String getMail() {
-        return new RandomString(10).nextString();
-    }
-
-    public int getDay() {
-        return random.nextInt(28);
-    }
-
-    public static String getPasswort() {
-        return new RandomString(10).nextString().concat("1");
-    }
-
     public Namen() {
         Scanner scannerFrauen;
         Scanner scannerMaenner;
@@ -54,6 +42,18 @@ class Namen {
         System.out.println("Maenner" + maenner.size() + " Frauen" + frauen.size() + " Nachnamen" + nachnamen.size());
         random = new Random();
 
+    }
+
+    public static String getMail() {
+        return new RandomString(10).nextString();
+    }
+
+    public static String getPasswort() {
+        return new RandomString(10).nextString() + '1';
+    }
+
+    public int getDay() {
+        return random.nextInt(28);
     }
 
     public String getVorname(boolean b) {

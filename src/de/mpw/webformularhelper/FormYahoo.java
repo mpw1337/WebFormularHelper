@@ -22,6 +22,7 @@ public class FormYahoo extends FormBlueprint {
         super(d, n);
     }
 
+    @Override
     public void gender() {
         HTMLInputElement genderM = (HTMLInputElement) d.getElementById("male");
         genderM.setChecked(true);

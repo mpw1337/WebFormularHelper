@@ -11,8 +11,8 @@ class RandomString {
     private static final char[] alpha;
 
     static {
-        StringBuilder tmp = new StringBuilder();
-        StringBuilder tmp2 = new StringBuilder();
+        StringBuilder tmp = new StringBuilder(10);
+        StringBuilder tmp2 = new StringBuilder(10);
         for (char ch = '0'; ch <= '9'; ++ch)
             tmp.append(ch);
         for (char ch = 'a'; ch <= 'z'; ++ch) {

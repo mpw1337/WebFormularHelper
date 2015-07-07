@@ -118,7 +118,7 @@ public class Controller {
         Document document = WvMain.getEngine().getDocument();
         FormSnelNl form = new FormSnelNl(document, n);
         String host = cbHost.getValue().toString();
-        String email = tfEmail.getText() + "@" + host;
+        String email = tfEmail.getText() + '@' + host;
         form.email(email);
         form.firstName(tfVorname.getText());
         form.lastName(tfNachname.getText());
@@ -132,7 +132,7 @@ public class Controller {
         if (inputtelnr != null) {
             telNr = inputtelnr.getValue();
         }
-        String information = tfEmail.getText() + "@" + mailsuffix + "	" + tfPasswort.getText() + "    -	-	" + telNr;
+        String information = tfEmail.getText() + '@' + mailsuffix + '	' + tfPasswort.getText() + "    -	-	" + telNr;
         taInformation.setText(information);
     }
 

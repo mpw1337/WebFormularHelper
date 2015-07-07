@@ -22,6 +22,6 @@ public class FormYahooTest {
 
     @Test
     public void testFirstName() throws Exception {
-        assertEquals("first-name", form.getFIRSTNAME());
+        assertEquals("Vorname wie erwartet", "first-name", form.getFIRSTNAME());
     }
 }

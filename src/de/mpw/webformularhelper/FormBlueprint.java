@@ -8,22 +8,22 @@ import org.w3c.dom.html.HTMLSelectElement;
 /**
  * Created by Markus on 07.07.2015.
  */
-public class FormBlueprint {
-    public String FIRSTNAME = "";
-    public String LASTNAME = "LastName";
-    public String EMAIL = "MemberName";
-    public String Password1 = "Password";
-    public String Password2 = "RetypePassword";
-    public String ZipCode = ""; //Inactive
-    public String BirthDay = "BirthDay";
-    public String BirthMonth = "BirthMonth";
-    public String BirthYear = "BirthYear";
-    public String Gender = "Gender";
-    public String Mobile = "mobile";
-    protected Document d;
-    private Namen n;
+class FormBlueprint {
+    private final Namen n;
+    Document d;
+    private String FIRSTNAME = "";
+    private String LASTNAME = "LastName";
+    private String EMAIL = "MemberName";
+    private String Password1 = "Password";
+    private String Password2 = "RetypePassword";
+    private String ZipCode = ""; //Inactive
+    private String BirthDay = "BirthDay";
+    private String BirthMonth = "BirthMonth";
+    private String BirthYear = "BirthYear";
+    private String Gender = "Gender";
+    private String Mobile = "mobile";
 
-    public FormBlueprint(Document d, Namen n) {
+    FormBlueprint(Document d, Namen n) {
         this.d = d;
         this.n = n;
     }
