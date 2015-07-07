@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.html.HTMLInputElement;
 
 public class Controller {
@@ -20,7 +19,6 @@ public class Controller {
     public Button btLoadLive;
     public Button btEintragenLive;
     public ChoiceBox cbHost;
-    private WebEngine webEngine;
     public WebView WvMain;
     public Button btLoad;
     public Button btGenerieren;
@@ -29,7 +27,7 @@ public class Controller {
     public TextField tfEmail;
     public TextField tfPasswort;
     public Button btEintragen;
-
+    private WebEngine webEngine;
 
     public final void getWebEngine() {
         webEngine = WvMain.getEngine();
@@ -115,6 +113,18 @@ public class Controller {
         showData("outlook.de");
     }
 
+    public void eintragenSnelNL(ActionEvent event) {
+        Namen n = new Namen();
+        Document document = WvMain.getEngine().getDocument();
+        FormSnelNl form = new FormSnelNl(document, n);
+        String host = cbHost.getValue().toString();
+        String email = tfEmail.getText() + "@" + host;
+        form.email(email);
+        form.firstName(tfVorname.getText());
+        form.lastName(tfNachname.getText());
+
+
+    }
     private void showData(String mailsuffix) {
         Document document = WvMain.getEngine().getDocument();
         HTMLInputElement inputtelnr = (HTMLInputElement) document.getElementById("mobile");
@@ -126,14 +136,5 @@ public class Controller {
         taInformation.setText(information);
     }
 
-    public void eintragenSnelNL(ActionEvent event) {
-        Document document = WvMain.getEngine().getDocument();
-        String host = cbHost.getValue().toString();
-        String email = tfEmail.getText() + "@" + host;
-        Element emailprimary = document.getElementById("edit-panes-customer-primary-email");
-        emailprimary.setAttribute("value", email);
-        Element emailsecondary = document.getElementById("edit-panes-customer-primary-email-confirm");
-        emailsecondary.setAttribute("value", email);
 
-    }
 }
