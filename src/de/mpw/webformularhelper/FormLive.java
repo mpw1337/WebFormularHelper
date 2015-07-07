@@ -3,7 +3,7 @@ package de.mpw.webformularhelper;
 /**
  * Created by Markus on 11.04.2015.
  */
-public final class FormLive {
+public final class FormLive extends FormBlueprint {
     public final static String FIRSTNAME = "FirstName";
     public final static String LASTNAME = "LastName";
     public final static String EMAIL = "MemberName";

@@ -55,7 +55,7 @@ public class Controller {
                     if (webEngine.getLocation().contains("eu.edit.yahoo.com/registration?.pd=&intl=de")) {
                         btEintragen.setDisable(false);
                     }
-                    if (webEngine.getLocation().contains("www.snelnl.com/cart/checkout?coupon=free")) {
+                    if (webEngine.getLocation().contains("https://www.snelnl.com/en/cart/checkout")) {
                         btEintragenSnelNL.setDisable(false);
                     }
                     if (webEngine.getLocation().contains("https://signup.live.com/signup")) {
@@ -132,6 +132,12 @@ public class Controller {
         showData("yahoo.de");
     }
 
+    private void firstName(FormBlueprint fb, Document d) {
+        Element firstName = d.getElementById(fb.FIRSTNAME);
+        firstName.setAttribute("value", tfVorname.getText());
+        HTMLInputElement inputFirstName = (HTMLInputElement) firstName;
+        inputFirstName.setValue(tfVorname.getText());
+    }
     public void eintragenLive(ActionEvent event) {
         Namen n = new Namen();
         Document document = WvMain.getEngine().getDocument();
@@ -142,7 +148,7 @@ public class Controller {
         Element lastName = document.getElementById(FormLive.LASTNAME);
         lastName.setAttribute("value", tfNachname.getText());
         Element email = document.getElementById(FormLive.EMAIL);
-        email.setAttribute("value", tfEmail.getText() +);
+        email.setAttribute("value", tfEmail.getText());
         Element passwort1 = document.getElementById(FormLive.Password1);
         Element passwort2 = document.getElementById(FormLive.Password2);
         passwort1.setAttribute("value", tfPasswort.getText());
