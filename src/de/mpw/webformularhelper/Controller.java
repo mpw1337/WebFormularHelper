@@ -28,6 +28,9 @@ public class Controller {
     public TextField tfPasswort;
     public Button btEintragen;
     private WebEngine webEngine;
+    private String str_Host_title = "Kein Host";
+    private String str_Host_content = "Bitte wählen sie einen E-Mail Host aus";
+    private String str_Host_header = "Information";
 
     public final void getWebEngine() {
         webEngine = WvMain.getEngine();
@@ -118,11 +121,20 @@ public class Controller {
         Namen n = new Namen();
         Document document = WvMain.getEngine().getDocument();
         FormSnelNl form = new FormSnelNl(document, n);
-        String host = cbHost.getValue().toString();
-        String email = tfEmail.getText() + '@' + host;
-        form.email(email);
-        form.firstName(tfVorname.getText());
-        form.lastName(tfNachname.getText());
+        String host = "";
+        if (cbHost.getValue() != null) {
+            host = cbHost.getValue().toString();
+            String email = tfEmail.getText() + '@' + host;
+            form.email(email);
+            form.firstName(tfVorname.getText());
+            form.lastName(tfNachname.getText());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(str_Host_title);
+            alert.setHeaderText(str_Host_header);
+            alert.setContentText(str_Host_content);
+            alert.show();
+        }
 
 
     }
