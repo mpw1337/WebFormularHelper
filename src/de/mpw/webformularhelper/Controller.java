@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.w3c.dom.Document;
@@ -27,6 +28,9 @@ public class Controller {
     public TextField tfEmail;
     public TextField tfPasswort;
     public Button btEintragen;
+    public Button btLoadTweak;
+    public Button btEintragenTweak;
+    public VBox vBoxLeft;
     private WebEngine webEngine;
     private String str_Host_title = "Kein Host";
     private String str_Host_content = "Bitte wählen sie einen E-Mail Host aus";
@@ -67,6 +71,7 @@ public class Controller {
         btLoad.setDisable(false);
         btLoad1.setDisable(false);
         btLoadLive.setDisable(false);
+        btLoadTweak.setDisable(false);
     }
 
     public void loadYahoo(ActionEvent actionEvent) {
@@ -79,6 +84,10 @@ public class Controller {
 
     public void loadSnelNL(ActionEvent event) {
         webEngine.load("http://www.snelnl.com/subscribe/test-trial-usenet");
+    }
+
+    public void loadTweak(ActionEvent actionEvent) {
+        webEngine.load("http://www.tweaknews.eu/en/usenet-plans");
     }
 
     public void generiereDaten(ActionEvent event) {
@@ -150,4 +159,7 @@ public class Controller {
     }
 
 
+    public void eintragenTweak(ActionEvent actionEvent) {
+
+    }
 }
