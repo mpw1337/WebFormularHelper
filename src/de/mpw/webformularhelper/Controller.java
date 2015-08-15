@@ -55,6 +55,7 @@ public class Controller {
                     btEintragen.setDisable(true);
                     btEintragenSnelNL.setDisable(true);
                     btEintragenLive.setDisable(true);
+                    btEintragenTweak.setDisable(true);
                     System.out.println("Auf der Seite " + webEngine.getLocation());
                     if (webEngine.getLocation().contains("eu.edit.yahoo.com/registration?.pd=&intl=de")) {
                         btEintragen.setDisable(false);
@@ -64,6 +65,9 @@ public class Controller {
                     }
                     if (webEngine.getLocation().contains("https://signup.live.com/signup")) {
                         btEintragenLive.setDisable(false);
+                    }
+                    if (webEngine.getLocation().contains("https://members.tweaknews.eu/en/signup/form")) {
+                        btEintragenTweak.setDisable(false);
                     }
                 }
             }
@@ -160,6 +164,22 @@ public class Controller {
 
 
     public void eintragenTweak(ActionEvent actionEvent) {
-
+        Namen n = new Namen();
+        Document document = WvMain.getEngine().getDocument();
+        FormTweak form = new FormTweak(document, n);
+        String host = "";
+        if (cbHost.getValue() != null) {
+            host = cbHost.getValue().toString();
+            String email = tfEmail.getText() + '@' + host;
+            form.email(email);
+            form.firstName(tfVorname.getText());
+            form.lastName(tfNachname.getText());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(str_Host_title);
+            alert.setHeaderText(str_Host_header);
+            alert.setContentText(str_Host_content);
+            alert.show();
+        }
     }
 }
